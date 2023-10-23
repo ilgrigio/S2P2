@@ -42,7 +42,7 @@ const amy = {
   isAmbassador: false,
 };
 
-const prices = [34, 5, 55];
+const prices = [34, 25, 101];
 const shippingCost = 50;
 let utenteCheEffettuaLAcquisto = []; //cambia il valore qui per provare se il tuo
 //algoritmo funziona!
@@ -86,26 +86,34 @@ let prezzoScontato = 0;
 for (p = 0; p < prices.length; p++) {
   tot += prices[p];
   prezzoScontato = tot - (tot * 30) / 100;
-  if (utenteCheEffettuaLAcquisto.isAmbassador === true && tot > 100) {
-      console.log("1 Hai diritto al 30% di sconto! "),
+  if (utenteCheEffettuaLAcquisto[1].isAmbassador === true && tot > 100) {
+    console.log("1 Hai diritto al 30% di sconto! "),
       console.log(
-        "La tua spedizione è gratis. Totale da pagare: ", prezzoScontato
+        "La tua spedizione è gratis. Totale da pagare: ",
+        prezzoScontato
       );
-  } else if (utenteCheEffettuaLAcquisto.isAmbassador === true && tot < 100) {
-      console.log("2 Hai diritto al 30% di sconto! "),
+  } else if (
+    utenteCheEffettuaLAcquisto[1].isAmbassador === true &&
+    tot <= 100
+  ) {
+    console.log("2 Hai diritto al 30% di sconto! "),
       console.log(
         "Totale carrello:",
         prezzoScontato + " il costo di spedizione è",
-        shippingCost, "Totale da pagare: ", prezzoScontato + shippingCost
+        shippingCost,
+        "Totale da pagare: ",
+        prezzoScontato + shippingCost
       );
   } else if (
-    utenteCheEffettuaLAcquisto[p].isAmbassador === false &&
+    utenteCheEffettuaLAcquisto[1].isAmbassador === false &&
     tot <= 100
   ) {
     console.log(
       "Totale carrello:",
       tot + " costo di spedizione",
-      shippingCost, "Totale: ", tot + shippingCost
+      shippingCost,
+      "Totale: ",
+      tot + shippingCost
     );
   }
 }
