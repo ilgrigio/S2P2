@@ -42,7 +42,7 @@ const amy = {
   isAmbassador: false,
 };
 
-const prices = [34, 25, 101];
+const prices = [34, 25, 8];
 const shippingCost = 50;
 let utenteCheEffettuaLAcquisto = []; //cambia il valore qui per provare se il tuo
 //algoritmo funziona!
@@ -71,7 +71,7 @@ console.log("-----Utenti Ambassator-----");
 const utenteAmbassador = [];
 
 for (let u = 0; u < utenteCheEffettuaLAcquisto.length; u++) {
-  if (utenteCheEffettuaLAcquisto[u].isAmbassador === true) {
+  if (utenteCheEffettuaLAcquisto[u].isAmbassador) {
     utenteAmbassador.push(utenteCheEffettuaLAcquisto[u]);
     // console.log(utenteAmbassador[u]);
   } // else console.log("non è Amb");
@@ -85,17 +85,17 @@ let prezzoScontato = 0;
 
 for (let p = 0; p < prices.length; p++) {
   tot += prices[p];
-  prezzoScontato = tot - (tot * 30) / 100;
-  if (utenteCheEffettuaLAcquisto.isAmbassador && tot > 100) {
+}
+for (let i = 0; i < utenteCheEffettuaLAcquisto.length; i++) {
+  // prezzoScontato = tot - (tot * 30) / 100;
+  prezzoScontato -= (tot * 30) / 100; // Calcolo il 30%
+  if (utenteCheEffettuaLAcquisto[i].isAmbassador && tot > 100) {
     console.log("1 Hai diritto al 30% di sconto! "),
       console.log(
         "La tua spedizione è gratis. Totale da pagare: ",
         prezzoScontato
       );
-  } else if (
-    utenteCheEffettuaLAcquisto.isAmbassador &&
-    tot <= 100
-  ) {
+  } else if (utenteCheEffettuaLAcquisto[i].isAmbassador && tot <= 100) {
     console.log("2 Hai diritto al 30% di sconto! "),
       console.log(
         "Totale carrello:",
@@ -105,7 +105,7 @@ for (let p = 0; p < prices.length; p++) {
         prezzoScontato + shippingCost
       );
   } else if (
-    utenteCheEffettuaLAcquisto.isAmbassador === false &&
+    utenteCheEffettuaLAcquisto[i].isAmbassador === false &&
     tot <= 100
   ) {
     console.log(
