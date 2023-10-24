@@ -83,17 +83,17 @@ console.log("-----APPLICAZIONE SCONTO-----");
 let tot = 0;
 let prezzoScontato = 0;
 
-for (p = 0; p < prices.length; p++) {
+for (let p = 0; p < prices.length; p++) {
   tot += prices[p];
   prezzoScontato = tot - (tot * 30) / 100;
-  if (utenteCheEffettuaLAcquisto[1].isAmbassador === true && tot > 100) {
+  if (utenteCheEffettuaLAcquisto.isAmbassador && tot > 100) {
     console.log("1 Hai diritto al 30% di sconto! "),
       console.log(
         "La tua spedizione è gratis. Totale da pagare: ",
         prezzoScontato
       );
   } else if (
-    utenteCheEffettuaLAcquisto[1].isAmbassador === true &&
+    utenteCheEffettuaLAcquisto.isAmbassador &&
     tot <= 100
   ) {
     console.log("2 Hai diritto al 30% di sconto! "),
@@ -105,7 +105,7 @@ for (p = 0; p < prices.length; p++) {
         prezzoScontato + shippingCost
       );
   } else if (
-    utenteCheEffettuaLAcquisto[1].isAmbassador === false &&
+    utenteCheEffettuaLAcquisto.isAmbassador === false &&
     tot <= 100
   ) {
     console.log(
